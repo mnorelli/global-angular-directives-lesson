@@ -11,7 +11,19 @@
   <!-- <script src="js/cardDirective.js"></script> -->
   <script src="js/todosController.js"></script>
 </head>
-<body>
-  Hello!
+<body ng-app="todoApp" ng-controller="TodosController as todos">
+  <header>
+    <h1>Angular Todo App</h1>
+    <h3>You have {{todos.all.length}} todos to do!</h3>
+  </header>
+  <ul id='todos'>
+    <li style="list-style: none;" ng-repeat="todo in todos.all">
+      <input type="checkbox" ng-model="todo.done">{{todo.task}}
+    </li>
+  </ul>
+  <form id='add-todo' ng-submit="todos.add()">
+    <input type="text" placeholder='I need to...' ng-model="todos.newTodo">
+  </form>
+  <p ng-if='todos.newTodo'>About to add todo: <strong>{{todos.newTodo}}</strong></p>
 </body>
 </html>
